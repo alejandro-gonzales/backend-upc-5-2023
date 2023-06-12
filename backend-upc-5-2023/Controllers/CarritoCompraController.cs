@@ -119,46 +119,6 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("UpdateCarritoCompra")]
-        public IActionResult Update(CarritoCompra carritoCompra)
-        {
-            try
-            {
-                const string sql = "UPDATE [dbo].[CARRITO_COMPRA] SET FECHA = @Fecha, ID_USUARIO = @IdUsuario WHERE ID = @Id";
-                var parameters = new DynamicParameters();
-                parameters.Add("ID", carritoCompra.Id, DbType.Int64);
-                parameters.Add("Fecha", DateTime.Now, DbType.DateTime);
-                parameters.Add("IdUsuario", carritoCompra.IdUsuario, DbType.Int64);
-
-                var result = DBManager.Instance.SetData(sql, parameters);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
-
-        [HttpPost]
-        [Route("DeleteCarritoCompra")]
-        public IActionResult Delete(int id)
-        {
-            try
-            {
-                const string sql = "UPDATE [dbo].[CARRITO_COMPRA] SET ESTADO_REGISTRO = 0 WHERE ID = @Id";
-                var parameters = new DynamicParameters();
-                parameters.Add("ID", id, DbType.Int64);
-
-                var result = DBManager.Instance.SetData(sql, parameters);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
-        
         #endregion Methods
     }
 }

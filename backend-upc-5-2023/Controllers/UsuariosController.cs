@@ -102,47 +102,6 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("UpdateUsuario")]
-        public IActionResult Update(Usuarios usuarios)
-        {
-            try
-            {
-                const string sql = "UPDATE [dbo].[USUARIOS] SET USER_NAME = @UserName, NOMBRE_COMPLETO = @NombreCompleto, PASSWORD = @Password WHERE ID = @Id";
-                var parameters = new DynamicParameters();
-                parameters.Add("ID", usuarios.Id, DbType.Int64);
-                parameters.Add("UserName", usuarios.UserName, DbType.String);
-                parameters.Add("NombreCompleto", usuarios.NombreCompleto, DbType.String);
-                parameters.Add("Password", usuarios.Password, DbType.String);
-
-                var result = DBManager.Instance.SetData(sql, parameters);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
-
-        [HttpPost]
-        [Route("DeleteUsuario")]
-        public IActionResult Delete(int id)
-        {
-            try
-            {
-                const string sql = "UPDATE [dbo].[USUARIOS] SET ESTADO_REGISTRO = 0 WHERE ID = @Id";
-                var parameters = new DynamicParameters();
-                parameters.Add("ID", id, DbType.Int64);
-
-                var result = DBManager.Instance.SetData(sql, parameters);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
-
         #endregion Methods
     }
 }
