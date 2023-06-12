@@ -59,6 +59,27 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetHProductoById")]
+        public IActionResult GetHProductoById(int Id)
+        {
+            try
+            {
+                const string sql = "SELECT * FROM H_PRODUCTO WHERE ID = @Id AND ESTADO_REGISTRO = 1";
+
+                var parameters = new DynamicParameters();
+                parameters.Add("ID", Id, DbType.Int64);
+
+                var result = DBManager.Instance.GetDataConParametros<HProducto>(sql, parameters);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                //log error
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [HttpPost]
         [Route("AddHProducto")]
         public IActionResult Insert(HProducto hProducto)
@@ -80,6 +101,50 @@ namespace backend_upc_5_2023.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        [HttpPost]
+        [Route("UpdateHProducto")]
+        public IActionResult Update(HProducto hProducto)
+        {
+            try
+            {
+                const string sql = "UPDATE [dbo].[H_PRODUCTO] SET CANTIDAD = @Cantidad, ID_PRODUCTO = @IdProducto, ID_CARRITO_COMPRA = @IdCarritoCompra WHERE ID = @Id";
+                var parameters = new DynamicParameters();
+                parameters.Add("ID", hProducto.Id, DbType.Int64);
+                parameters.Add("Cantidad", hProducto.Cantidad, DbType.Int64);
+                parameters.Add("IdProducto", hProducto.IdProducto, DbType.Int64);
+                parameters.Add("IdCarritoCompra", hProducto.IdCarritoCompra, DbType.Int64);
+
+                var result = DBManager.Instance.SetData(sql, parameters);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("DeleteHProducto")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                const string sql = "UPDATE [dbo].[H_PRODUCTO] SET ESTADO_REGISTRO = 0 WHERE ID = @Id";
+                var parameters = new DynamicParameters();
+                parameters.Add("ID", id, DbType.Int64);
+
+                var result = DBManager.Instance.SetData(sql, parameters);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
+
         #endregion Methods
     }
 }
