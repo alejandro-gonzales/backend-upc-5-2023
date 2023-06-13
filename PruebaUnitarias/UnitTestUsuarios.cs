@@ -1,4 +1,6 @@
 ﻿using backend_upc_5_2023.Connection;
+using backend_upc_5_2023.Dominio;
+using backend_upc_5_2023.Servicios;
 
 namespace PruebaUnitarias
 {
@@ -13,7 +15,28 @@ namespace PruebaUnitarias
         [Fact]
         public void Usuarios_Get_VerificarNotNull()
         {
+            var result = UsuariosServicios.Get<Usuarios>();//un listado
+            Assert.NotNull(result);
+        }
 
+        [Fact]
+        public void Usuarios_GetById_RegresaItem()
+        {
+            var result = UsuariosServicios.GetById<Usuarios>(1);
+            Assert.Equal(1, result.Id);
+        }
+
+        [Fact]
+        public void Usuarios_Insertar_RetornaUno()
+        {
+            Usuarios usuarios = new();
+            usuarios.NombreCompleto = "Alejandro Gonzales";
+            usuarios.UserName = "gonzalesal";
+            usuarios.Password = "morf659*";
+
+            var result = UsuariosServicios.Insert(usuarios);
+
+            Assert.Equal(1, result);
         }
     }
 }
