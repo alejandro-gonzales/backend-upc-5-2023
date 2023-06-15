@@ -15,12 +15,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44301/api/Categoria",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/Categoria",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"Categoria"
@@ -47,12 +49,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/Categoria/GetCategoriaById?id=2",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/Categoria/GetCategoriaById?id=2",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"Categoria",
@@ -83,12 +87,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/Categoria/AddCategoria",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/Categoria/AddCategoria",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"Categoria",
@@ -113,12 +119,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/Categoria/UpdateCategoria",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/Categoria/UpdateCategoria",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"Categoria",
@@ -134,12 +142,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44301/api/Categoria/DeleteCategoria?id=20",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/Categoria/DeleteCategoria?id=2",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"Categoria",
@@ -148,7 +158,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "20"
+									"value": "2"
 								}
 							]
 						}
@@ -166,12 +176,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44301/api/Usuarios",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/Usuarios",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"Usuarios"
@@ -198,12 +210,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/Usuarios/GetUsuariosById?id=2",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/Usuarios/GetUsuariosById?id=2",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"Usuarios",
@@ -234,12 +248,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/Usuarios/AddUsuario",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/Usuarios/AddUsuario",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"Usuarios",
@@ -264,12 +280,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/Usuarios/UpdateUsuario",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/Usuarios/UpdateUsuario",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"Usuarios",
@@ -285,12 +303,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44301/api/Usuarios/DeleteUsuario?id=4",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/Usuarios/DeleteUsuario?id=4",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"Usuarios",
@@ -317,12 +337,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44301/api/Producto",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/Producto",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"Producto"
@@ -349,12 +371,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/Producto/GetProductoById?id=4",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/Producto/GetProductoById?id=4",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"Producto",
@@ -385,12 +409,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/Producto/AddProducto",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/Producto/AddProducto",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"Producto",
@@ -415,12 +441,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/Producto/UpdateProducto",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/Producto/UpdateProducto",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"Producto",
@@ -436,12 +464,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44301/api/Producto/DeleteProducto?id=6",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/Producto/DeleteProducto?id=6",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"Producto",
@@ -468,12 +498,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44301/api/CarritoCompra",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/CarritoCompra",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"CarritoCompra"
@@ -500,12 +532,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/CarritoCompra/GetCarritoCompraById?id=2",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/CarritoCompra/GetCarritoCompraById?id=2",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"CarritoCompra",
@@ -536,12 +570,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/CarritoCompra/AddCarritoCompra",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/CarritoCompra/AddCarritoCompra",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"CarritoCompra",
@@ -566,12 +602,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/CarritoCompra/UpdateCarritoCompra",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/CarritoCompra/UpdateCarritoCompra",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"CarritoCompra",
@@ -587,12 +625,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44301/api/CarritoCompra/DeleteCarritoCompra?id=4",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/CarritoCompra/DeleteCarritoCompra?id=4",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"CarritoCompra",
@@ -619,12 +659,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44301/api/HProducto",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/HProducto",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"HProducto"
@@ -651,12 +693,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/HProducto/GetHProductoById?id=2",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/HProducto/GetHProductoById?id=2",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"HProducto",
@@ -687,12 +731,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/HProducto/AddHProducto",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/HProducto/AddHProducto",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"HProducto",
@@ -717,12 +763,14 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44301/api/HProducto/UpdateHProducto",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/HProducto/UpdateHProducto",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"HProducto",
@@ -738,12 +786,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44301/api/HProducto/DeleteHProducto?id=4",
-							"protocol": "https",
+							"raw": "http://www.alejandrogonzalesviera.somee.com/api/HProducto/DeleteHProducto?id=4",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"www",
+								"alejandrogonzalesviera",
+								"somee",
+								"com"
 							],
-							"port": "44301",
 							"path": [
 								"api",
 								"HProducto",
