@@ -2,14 +2,9 @@
 using backend_upc_5_2023.Dominio;
 using backend_upc_5_2023.Servicios;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.SqlClient;
 
 namespace backend_upc_5_2023.Controllers
 {
-    /// <summary>
-    /// Servicios web para la entidad: <see cref="Producto"/>
-    /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [Route("api/[controller]")]
     [ApiController]
     public class ProductoController : ControllerBase
@@ -21,10 +16,6 @@ namespace backend_upc_5_2023.Controllers
 
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ProductoController"/> class.
-        /// </summary>
-        /// <param name="configuration">The configuration.</param>
         public ProductoController(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -37,13 +28,8 @@ namespace backend_upc_5_2023.Controllers
 
         #region Methods
 
-        /// <summary>
-        /// Gets this instance.
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="SqlException"></exception>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetProducto()
         {
             try
             {
@@ -56,11 +42,6 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
-        /// <summary>
-        /// Gets the producto by identifier.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns></returns>
         [HttpGet]
         [Route("GetProductoById")]
         public IActionResult GetProductoById(int id)
@@ -76,18 +57,13 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
-        /// <summary>
-        /// Inserts the specified producto.
-        /// </summary>
-        /// <param name="producto">The producto.</param>
-        /// <returns></returns>
         [HttpPost]
         [Route("AddProducto")]
-        public IActionResult Insert(Producto producto)
+        public IActionResult AddProducto(Producto producto)
         {
             try
             {
-                var result = ProductoServicios.Insert(producto);
+                var result = ProductoServicios.AddProducto(producto);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -96,18 +72,13 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
-        /// <summary>
-        /// Updates the specified producto.
-        /// </summary>
-        /// <param name="producto">The producto.</param>
-        /// <returns></returns>
-        [HttpPost]
+        [HttpPut]
         [Route("UpdateProducto")]
-        public IActionResult Update(Producto producto)
+        public IActionResult UpdateProducto(Producto producto)
         {
             try
             {
-                var result = ProductoServicios.Update(producto);
+                var result = ProductoServicios.UpdateProducto(producto);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -116,18 +87,13 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
-        /// <summary>
-        /// Deletes the specified identifier.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns></returns>
-        [HttpPost]
+        [HttpDelete]
         [Route("DeleteProducto")]
-        public IActionResult Delete(int id)
+        public IActionResult DeleteProducto(int id)
         {
             try
             {
-                var result = ProductoServicios.Delete(id);
+                var result = ProductoServicios.DeleteProducto(id);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -135,7 +101,6 @@ namespace backend_upc_5_2023.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-
         #endregion Methods
     }
 }

@@ -2,14 +2,9 @@
 using backend_upc_5_2023.Dominio;
 using backend_upc_5_2023.Servicios;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.SqlClient;
 
 namespace backend_upc_5_2023.Controllers
 {
-    /// <summary>
-    /// Servicios web para la entidad: <see cref="Usuarios"/>
-    /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [Route("api/[controller]")]
     [ApiController]
     public class UsuariosController : ControllerBase
@@ -20,10 +15,7 @@ namespace backend_upc_5_2023.Controllers
         #endregion Fields
 
         #region Constructors
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UsuariosController"/> class.
-        /// </summary>
-        /// <param name="configuration">The configuration.</param>
+
         public UsuariosController(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -36,13 +28,8 @@ namespace backend_upc_5_2023.Controllers
 
         #region Methods
 
-        /// <summary>
-        /// Gets this instance.
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="SqlException"></exception>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetUsuarios()
         {
             try
             {
@@ -55,18 +42,17 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
-        /// <summary>
-        /// Gets the usuario by identifier.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns></returns>
         [HttpGet]
-        [Route("GetById")]
-        public IActionResult GetUsuarioById(int id)
+        [Route("GetUsuariosById")]
+        public IActionResult GetUsuariosById(int id)
         {
             try
             {
                 var result = UsuariosServicios.GetById<Usuarios>(id);
+                if (result == null)
+                {
+                    return NotFound();
+                }
                 return Ok(result);
             }
             catch (Exception ex)
@@ -75,18 +61,13 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
-        /// <summary>
-        /// Inserts the specified usuarios.
-        /// </summary>
-        /// <param name="usuarios">The usuarios.</param>
-        /// <returns></returns>
         [HttpPost]
         [Route("AddUsuario")]
-        public IActionResult Insert(Usuarios usuarios)
+        public IActionResult AddUsuario(Usuarios usuario)
         {
             try
             {
-                var result = UsuariosServicios.Insert(usuarios);
+                var result = UsuariosServicios.AddUsuario(usuario);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -95,6 +76,35 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("UpdateUsuario")]
+        public IActionResult UpdateUsuario(Usuarios usuario)
+        {
+            try
+            {
+                var result = UsuariosServicios.UpdateUsuario(usuario);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("DeleteUsuario")]
+        public IActionResult DeleteUsuario(int id)
+        {
+            try
+            {
+                var result = UsuariosServicios.DeleteUsuario(id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
         #endregion Methods
     }
 }

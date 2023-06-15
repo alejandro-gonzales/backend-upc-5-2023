@@ -1,17 +1,10 @@
-﻿// Ignore Spelling: Carrito
-
-using backend_upc_5_2023.Connection;
+﻿using backend_upc_5_2023.Connection;
 using backend_upc_5_2023.Dominio;
 using backend_upc_5_2023.Servicios;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.SqlClient;
 
 namespace backend_upc_5_2023.Controllers
 {
-    /// <summary>
-    /// Servicios web para la entidad: <see cref="CarritoCompra"/>
-    /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [Route("api/[controller]")]
     [ApiController]
     public class CarritoCompraController : ControllerBase
@@ -22,10 +15,7 @@ namespace backend_upc_5_2023.Controllers
         #endregion Fields
 
         #region Constructors
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CarritoCompraController"/> class.
-        /// </summary>
-        /// <param name="configuration">The configuration.</param>
+
         public CarritoCompraController(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -38,13 +28,8 @@ namespace backend_upc_5_2023.Controllers
 
         #region Methods
 
-        /// <summary>
-        /// Gets this instance.
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="SqlException"></exception>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetCarritoCompra()
         {
             try
             {
@@ -57,11 +42,6 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
-        /// <summary>
-        /// Gets the carrito compra by identifier.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns></returns>
         [HttpGet]
         [Route("GetCarritoCompraById")]
         public IActionResult GetCarritoCompraById(int id)
@@ -77,18 +57,28 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
-        /// <summary>
-        /// Gets the detalle by identifier.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("GetDetalleById")]
-        public IActionResult GetDetalleById(int id)
+        //[HttpGet]
+        //[Route("GetDetalleById")]
+        //public IActionResult GetDetalleById(int id)
+        //{
+        //    try
+        //    {
+        //        var result = CarritoCompraServicios.GetDetalleById(id);
+        //        return Ok(result);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, ex.Message);
+        //    }
+        //}
+
+        [HttpPost]
+        [Route("AddCarritoCompra")]
+        public IActionResult AddCarritoCompra(CarritoCompra carritoCompra)
         {
             try
             {
-                var result = CarritoCompraServicios.GetDetalleById(id);
+                var result = CarritoCompraServicios.AddCarritoCompra(carritoCompra);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -97,18 +87,28 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
-        /// <summary>
-        /// Inserts the specified carrito compra.
-        /// </summary>
-        /// <param name="carritoCompra">The carrito compra.</param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("AddCarritoCompra")]
-        public IActionResult Insert(CarritoCompra carritoCompra)
+        [HttpPut]
+        [Route("UpdateCarritoCompra")]
+        public IActionResult UpdateCarritoCompra(CarritoCompra carritoCompra)
         {
             try
             {
-                var result = CarritoCompraServicios.Insert(carritoCompra);
+                var result = CarritoCompraServicios.UpdateCarritoCompra(carritoCompra);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("DeleteCarritoCompra")]
+        public IActionResult DeleteCarritoCompra(int id)
+        {
+            try
+            {
+                var result = CarritoCompraServicios.DeleteCarritoCompra(id);
                 return Ok(result);
             }
             catch (Exception ex)

@@ -1,16 +1,10 @@
-﻿// Ignore Spelling: Categoria
-
-using backend_upc_5_2023.Connection;
+﻿using backend_upc_5_2023.Connection;
 using backend_upc_5_2023.Dominio;
 using backend_upc_5_2023.Servicios;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend_upc_5_2023.Controllers
 {
-    /// <summary>
-    /// Servicios web para la entidad: <see cref="Categoria"/>
-    /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriaController : ControllerBase
@@ -22,10 +16,6 @@ namespace backend_upc_5_2023.Controllers
 
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CategoriaController"/> class.
-        /// </summary>
-        /// <param name="configuration">The configuration.</param>
         public CategoriaController(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -38,11 +28,6 @@ namespace backend_upc_5_2023.Controllers
 
         #region Methods
 
-        /// <summary>
-        /// Gets this instance.
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         [HttpGet]
         public IActionResult Get()
         {
@@ -57,11 +42,6 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
-        /// <summary>
-        /// Gets the categoria by identifier.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns></returns>
         [HttpGet]
         [Route("GetCategoriaById")]
         public IActionResult GetCategoriaById(int id)
@@ -69,6 +49,10 @@ namespace backend_upc_5_2023.Controllers
             try
             {
                 var result = CategoriaServicios.GetById<Categoria>(id);
+                if (result == null)
+                {
+                    return NotFound();
+                }
                 return Ok(result);
             }
             catch (Exception ex)
@@ -77,18 +61,13 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
-        /// <summary>
-        /// Adds the specified categoria.
-        /// </summary>
-        /// <param name="categoria">The categoria.</param>
-        /// <returns></returns>
         [HttpPost]
         [Route("AddCategoria")]
-        public IActionResult Insert(Categoria categoria)
+        public IActionResult AddCategoria(Categoria categoria)
         {
             try
             {
-                var result = CategoriaServicios.Insert(categoria);
+                var result = CategoriaServicios.AddCategoria(categoria);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -97,18 +76,13 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
-        /// <summary>
-        /// Updates the specified categoria.
-        /// </summary>
-        /// <param name="categoria">The categoria.</param>
-        /// <returns></returns>
-        [HttpPost]
+        [HttpPut]
         [Route("UpdateCategoria")]
-        public IActionResult Update(Categoria categoria)
+        public IActionResult UpdateCategoria(Categoria categoria)
         {
             try
             {
-                var result = CategoriaServicios.Update(categoria);
+                var result = CategoriaServicios.UpdateCategoria(categoria);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -117,18 +91,13 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
-        /// <summary>
-        /// Deletes the specified identifier.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns></returns>
-        [HttpPost]
+        [HttpDelete]
         [Route("DeleteCategoria")]
-        public IActionResult Delete(int id)
+        public IActionResult DeleteCategoria(int id)
         {
             try
             {
-                var result = CategoriaServicios.Delete(id);
+                var result = CategoriaServicios.DeleteCategoria(id);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -136,7 +105,6 @@ namespace backend_upc_5_2023.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-
         #endregion Methods
     }
 }

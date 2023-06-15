@@ -5,101 +5,55 @@ using System.Data;
 
 namespace backend_upc_5_2023.Servicios
 {
-    /// <summary>
-    /// Clase de servicios para la entidad: <see cref="Producto"/>
-    /// </summary>
     public static class ProductoServicios
     {
-        /// <summary>
-        /// Gets this instance.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static IEnumerable<T> Get<T>()
         {
-            const string sql = "SELECT * FROM PRODUCTO WHERE ESTADO_REGISTRO = 1";
-
-            return DBManager.Instance.GetData<T>(sql);
+            const string nombreProcAlmacenado = "ObtenerListaProducto";
+            return DBManager.Instance.GetData<T>(nombreProcAlmacenado);
         }
 
-        /// <summary>
-        /// Gets the by identifier.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="id">The identifier.</param>
-        /// <returns></returns>
         public static Producto GetById(int id)
         {
-            const string sql = "SELECT * FROM PRODUCTO WHERE ID = @Id AND ESTADO_REGISTRO = 1";
-
+            const string nombreProcAlmacenado = "ObtenerProductoPorId";
             var parameters = new DynamicParameters();
             parameters.Add("Id", id, DbType.Int64);
-
-            var result = DBManager.Instance.GetDataConParametros<Producto>(sql, parameters);
-
+            var result = DBManager.Instance.GetDataConParametros<Producto>(nombreProcAlmacenado, parameters);
             Producto producto = result.FirstOrDefault();
-
             if (producto != null)
             {
                 producto.Categoria = CategoriaServicios.GetById<Categoria>(producto.IdCategoria);
             }
-
             return result.FirstOrDefault();
         }
 
-        /// <summary>
-        /// Inserts the specified producto.
-        /// </summary>
-        /// <param name="producto">The producto.</param>
-        /// <returns></returns>
-        /// <exception cref="System.Data.SqlClient.SqlException"></exception>
-        public static int Insert(Producto producto)
+        public static int AddProducto(Producto producto)
         {
-            const string sql = "INSERT INTO [PRODUCTO]([NOMBRE], [ID_CATEGORIA]) VALUES (@Nombre, @IdCategoria) ";
+            const string nombreProcAlmacenado = "InsertarProducto";
             var parameters = new DynamicParameters();
             parameters.Add("Nombre", producto.Nombre, DbType.String);
             parameters.Add("IdCategoria", producto.IdCategoria, DbType.Int64);
-
-            var result = DBManager.Instance.SetData(sql, parameters);
-
+            var result = DBManager.Instance.SetData(nombreProcAlmacenado, parameters);
             return result;
         }
 
-        /// <summary>
-        /// Updates the specified producto.
-        /// </summary>
-        /// <param name="producto">The producto.</param>
-        /// <returns></returns>
-        /// <exception cref="System.Data.SqlClient.SqlException"></exception>
-        public static int Update(Producto producto)
+        public static int UpdateProducto(Producto producto)
         {
-            const string sql = "UPDATE [PRODUCTO] SET NOMBRE = @Nombre, ID_CATEGORIA = @IdCategoria WHERE ID = @Id";
-
+            const string nombreProcAlmacenado = "ActualizarProducto";
             var parameters = new DynamicParameters();
             parameters.Add("Id", producto.Id, DbType.Int64);
             parameters.Add("Nombre", producto.Nombre, DbType.String);
             parameters.Add("IdCategoria", producto.IdCategoria, DbType.Int64);
-
-            var result = DBManager.Instance.SetData(sql, parameters);
-
+            var result = DBManager.Instance.SetData(nombreProcAlmacenado, parameters);
             return result;
         }
 
-        /// <summary>
-        /// Deletes the specified identifier.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns></returns>
-        /// <exception cref="System.Data.SqlClient.SqlException"></exception>
-        public static int Delete(int id)
+        public static int DeleteProducto(int id)
         {
-            const string sql = "UPDATE [PRODUCTO] SET ESTADO_REGISTRO = 0 WHERE ID = @Id";
-
+            const string nombreProcAlmacenado = "EliminarProducto";
             var parameters = new DynamicParameters();
             parameters.Add("ID", id, DbType.Int64);
-
-            var result = DBManager.Instance.SetData(sql, parameters);
+            var result = DBManager.Instance.SetData(nombreProcAlmacenado, parameters);
             return result;
         }
     }

@@ -1,11 +1,9 @@
 ﻿using Dapper;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace backend_upc_5_2023.Connection
 {
-    /// <summary>
-    /// Patron de diseño Singleton
-    /// </summary>
     public sealed class DBManager
     {
         #region Fields
@@ -20,9 +18,6 @@ namespace backend_upc_5_2023.Connection
 
         #region Methods
 
-        /// <summary>
-        /// Gets the instance.
-        /// </summary>
         public static DBManager Instance
         {
             get
@@ -38,53 +33,31 @@ namespace backend_upc_5_2023.Connection
             }
         }
 
-        /// <summary>
-        /// Gets or sets the connection string.
-        /// </summary>
-        /// <value>
-        /// The connection string.
-        /// </value>
         public string? ConnectionString { get; set; }
 
-        /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="sql">The SQL.</param>
-        /// <returns></returns>
-        /// <exception cref="SqlException"></exception>
-        public IEnumerable<T> GetData<T>(string sql)
+        public IEnumerable<T> GetData<T>(string nombreProcAlmacenado)
         {
             using var connection = new SqlConnection(ConnectionString);
             connection.Open();
             DefaultTypeMap.MatchNamesWithUnderscores = true;
-            return connection.Query<T>(sql);
+            return connection.Query<T>(nombreProcAlmacenado, commandType: CommandType.StoredProcedure);
         }
 
-        public IEnumerable<T> GetDataConParametros<T>(string sql, DynamicParameters dynamicParameters)
+        public IEnumerable<T> GetDataConParametros<T>(string nombreProcAlmacenado, object parameters)
         {
             using var connection = new SqlConnection(ConnectionString);
             connection.Open();
             DefaultTypeMap.MatchNamesWithUnderscores = true;
-            return connection.Query<T>(sql, dynamicParameters);
+            return connection.Query<T>(nombreProcAlmacenado, parameters, commandType: CommandType.StoredProcedure);
         }
 
-        /// <summary>
-        /// Sets the data.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="sql">The SQL.</param>
-        /// <param name="dynamicParameters">The dynamic parameters.</param>
-        /// <returns></returns>
-        /// <exception cref="SqlException"></exception>
-        public int SetData(string sql, DynamicParameters dynamicParameters)
+        public int SetData(string nombreProcAlmacenado, DynamicParameters dynamicParameters)
         {
             using var connection = new SqlConnection(ConnectionString);
             connection.Open();
-            DefaultTypeMap.MatchNamesWithUnderscores = true;//SnakeCase to CamelCase
-            return connection.Execute(sql, dynamicParameters);
+            DefaultTypeMap.MatchNamesWithUnderscores = true;
+            return connection.Execute(nombreProcAlmacenado, dynamicParameters, commandType: CommandType.StoredProcedure);
         }
-
         #endregion Methods
     }
 }
