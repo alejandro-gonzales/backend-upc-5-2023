@@ -36,23 +36,42 @@ namespace backend_upc_5_2023.Servicios
         /// <typeparam name="T"></typeparam>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        public static Producto GetById(int id)
+        //public static Producto GetById(int id)
+        //{
+        //    const string sql = "SELECT * FROM PRODUCTO WHERE ID = @Id AND ESTADO_REGISTRO = 1";
+
+        //    var parameters = new DynamicParameters();
+        //    parameters.Add("Id", id, DbType.Int64);
+
+        //    var result = DBManager.Instance.GetDataConParametros<Producto>(sql, parameters);
+
+        //    Producto producto = result.FirstOrDefault();
+
+        //    if (producto != null)
+        //    {
+        //        producto.Categoria = CategoriaServicios.GetById<Categoria>(producto.IdCategoria);
+        //    }
+
+        //    return result.FirstOrDefault();
+        //}
+
+        public static T GetById<T>(int id) where T : Producto
         {
-            const string sql = "SELECT * FROM PRODUCTO WHERE ID = @Id AND ESTADO_REGISTRO = 1";
+            const string sql = "SELECT * FROM PRODUCTO WHERE ID = @Id";
 
             var parameters = new DynamicParameters();
-            parameters.Add("Id", id, DbType.Int64);
+            parameters.Add("ID", id, DbType.Int64);
 
-            var result = DBManager.Instance.GetDataConParametros<Producto>(sql, parameters);
+            var result = DBManager.Instance.GetDataConParametros<T>(sql, parameters);
 
-            Producto producto = result.FirstOrDefault();
+            T producto = result.FirstOrDefault();
 
             if (producto != null)
             {
                 producto.Categoria = CategoriaServicios.GetById<Categoria>(producto.IdCategoria);
             }
 
-            return result.FirstOrDefault();
+            return producto;
         }
 
         /// <summary>

@@ -49,7 +49,7 @@ namespace backend_upc_5_2023.Controllers
         {
             try
             {
-                var result = HProductoServicios.Get<HProducto>();
+                var result = HProductoServicios.Get();
                 return Ok(result);
             }
             catch (Exception ex)

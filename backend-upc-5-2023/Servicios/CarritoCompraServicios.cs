@@ -72,7 +72,7 @@ namespace backend_upc_5_2023.Servicios
 
                 foreach (var item in enumerableHProducto)
                 {
-                    item.Producto = ProductoServicios.GetById(item.IdProducto);
+                    item.Producto = ProductoServicios.GetById<Producto>(item.IdProducto);
                 }
 
                 carritoCompra.Productos = enumerableHProducto.ToList();
@@ -89,7 +89,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static int Insert(CarritoCompra carritoCompra)
         {
-            const string sql = "INSERT INTO CARRITO_COMPRA([FECHA], [ID_USUARIO]) VALUES (@Fecha, @IdUsuario) ";
+            const string sql = "INSERT INTO CARRITO_COMPRA([FECHA], [ID_USUARIO]) VALUES (@Fecha, @IdUsuario)";
             var parameters = new DynamicParameters();
             parameters.Add("Fecha", DateTime.Now, DbType.DateTime);
             parameters.Add("IdUsuario", carritoCompra.IdUsuario, DbType.Int64);

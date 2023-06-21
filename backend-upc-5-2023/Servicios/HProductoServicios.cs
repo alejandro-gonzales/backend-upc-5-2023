@@ -3,6 +3,7 @@
 using backend_upc_5_2023.Connection;
 using backend_upc_5_2023.Dominio;
 using Dapper;
+using System.Collections.Generic;
 using System.Data;
 
 namespace backend_upc_5_2023.Servicios
@@ -18,11 +19,24 @@ namespace backend_upc_5_2023.Servicios
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
-        public static IEnumerable<T> Get<T>()
+        //public static IEnumerable<T> Get<T>()
+        //{
+        //    const string sql = "SELECT * FROM H_PRODUCTO WHERE ESTADO_REGISTRO = 1";
+
+        //    return DBManager.Instance.GetData<T>(sql);
+        //}
+
+        public static IEnumerable<HProducto> Get()
         {
             const string sql = "SELECT * FROM H_PRODUCTO WHERE ESTADO_REGISTRO = 1";
+            var enummerableHProducto = DBManager.Instance.GetData<HProducto>(sql);
 
-            return DBManager.Instance.GetData<T>(sql);
+            foreach (var item in enummerableHProducto)
+            {
+                item.Producto = ProductoServicios.GetById<Producto>(item.IdProducto);
+            }
+
+            return enummerableHProducto;
         }
 
         /// <summary>
@@ -44,7 +58,7 @@ namespace backend_upc_5_2023.Servicios
 
             if (hProducto != null)
             {
-                hProducto.Producto = ProductoServicios.GetById(hProducto.IdProducto);
+                hProducto.Producto = ProductoServicios.GetById<Producto>(hProducto.IdProducto);
                 hProducto.CarritoCompra = CarritoCompraServicios.GetById(hProducto.IdCarritoCompra);
             }
 
@@ -76,8 +90,7 @@ namespace backend_upc_5_2023.Servicios
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
         public static int Insert(HProducto hProducto)
         {
-            const string sql = "INSERT INTO H_PRODUCTO([CANTIDAD], [ID_PRODUCTO], [ID_CARRITO_COMPRA]) VALUES (@Cantidad, @IdProducto, @IdCarritoCompra) ";
-
+            const string sql = "INSERT INTO H_PRODUCTO([CANTIDAD], [ID_PRODUCTO], [ID_CARRITO_COMPRA]) VALUES (@Cantidad, @IdProducto, @IdCarritoCompra)";
             var parameters = new DynamicParameters();
             parameters.Add("Cantidad", hProducto.Cantidad, DbType.Int64);
             parameters.Add("IdProducto", hProducto.IdProducto, DbType.Int64);

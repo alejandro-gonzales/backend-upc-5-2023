@@ -69,7 +69,7 @@ namespace backend_upc_5_2023.Controllers
         {
             try
             {
-                var result = ProductoServicios.GetById(id);
+                var result = ProductoServicios.GetById<Producto>(id);
                 return Ok(result);
             }
             catch (Exception ex)
