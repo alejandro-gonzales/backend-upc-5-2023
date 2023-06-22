@@ -50,7 +50,7 @@ namespace backend_upc_5_2023.Controllers
         {
             try
             {
-                var result = CarritoCompraServicios.Get<CarritoCompra>();
+                var result = CarritoCompraServicios.Get();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -84,20 +84,22 @@ namespace backend_upc_5_2023.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        [HttpGet]
-        [Route("GetDetalleById")]
-        public IActionResult GetDetalleById(int id)
-        {
-            try
-            {
-                var result = CarritoCompraServicios.GetDetalleById(id);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
+        
+        
+        //[HttpGet]
+        //[Route("GetDetalleById")]
+        //public IActionResult GetDetalleById(int id)
+        //{
+        //    try
+        //    {
+        //        var result = CarritoCompraServicios.GetDetalleById(id);
+        //        return Ok(result);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, ex.Message);
+        //    }
+        //}
 
         /// <summary>
         /// Inserts the specified carrito compra.
@@ -111,6 +113,37 @@ namespace backend_upc_5_2023.Controllers
             try
             {
                 var result = CarritoCompraServicios.Insert(carritoCompra);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
+        [HttpPost]
+        [Route("UpdateCarritoCompra")]
+        public IActionResult Update(CarritoCompra carritoCompra)
+        {
+            try
+            {
+                var result = CarritoCompraServicios.Update(carritoCompra);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("DeleteCarritoCompra")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                var result = CarritoCompraServicios.Delete(id);
                 return Ok(result);
             }
             catch (Exception ex)

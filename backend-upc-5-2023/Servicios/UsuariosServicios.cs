@@ -18,11 +18,19 @@ namespace backend_upc_5_2023.Servicios
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
-        public static IEnumerable<T> Get<T>()
+
+        //public static IEnumerable<T> Get<T>()
+        //{
+        //    const string sql = "SELECT * FROM USUARIOS WHERE ESTADO_REGISTRO = 1";
+
+        //    return DBManager.Instance.GetData<T>(sql);
+        //}
+
+        public static IEnumerable<Usuarios> Get()
         {
             const string sql = "SELECT * FROM USUARIOS WHERE ESTADO_REGISTRO = 1";
 
-            return DBManager.Instance.GetData<T>(sql);
+            return DBManager.Instance.GetData<Usuarios>(sql);
         }
 
         /// <summary>
@@ -31,9 +39,22 @@ namespace backend_upc_5_2023.Servicios
         /// <typeparam name="T"></typeparam>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        public static T GetById<T>(int id)
+        //public static T GetById<T>(int id)
+        //{
+        //    const string sql = "SELECT * FROM USUARIOS WHERE ID = @Id AND ESTADO_REGISTRO = 1";
+
+        //    var parameters = new DynamicParameters();
+        //    parameters.Add("ID", id, DbType.Int64);
+
+        //    var result = DBManager.Instance.GetDataConParametros<T>(sql, parameters);
+
+        //    return result.FirstOrDefault();
+        //}
+
+
+        public static T GetById<T>(int id) where T : Usuarios
         {
-            const string sql = "SELECT * FROM USUARIOS WHERE ID = @Id AND ESTADO_REGISTRO = 1";
+            const string sql = "SELECT * FROM USUARIOS WHERE ID = @Id";
 
             var parameters = new DynamicParameters();
             parameters.Add("ID", id, DbType.Int64);
@@ -41,7 +62,9 @@ namespace backend_upc_5_2023.Servicios
             var result = DBManager.Instance.GetDataConParametros<T>(sql, parameters);
 
             return result.FirstOrDefault();
+
         }
+
 
         /// <summary>
         /// Inserts the specified usuarios.
@@ -62,5 +85,32 @@ namespace backend_upc_5_2023.Servicios
 
             return result;
         }
+
+        public static int Update(Usuarios usuarios)
+        {
+            const string sql = "UPDATE [USUARIOS] SET USER_NAME = @UserName, NOMBRE_COMPLETO = @NombreCompleto, PASSWORD = @Password WHERE ID = @Id";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("Id", usuarios.Id, DbType.Int64);
+            parameters.Add("UserName", usuarios.UserName, DbType.String);
+            parameters.Add("NombreCompleto", usuarios.NombreCompleto, DbType.String);
+            parameters.Add("Password", usuarios.Password, DbType.String);
+
+            var result = DBManager.Instance.SetData(sql, parameters);
+
+            return result;
+        }
+
+        public static int Delete(int id)
+        {
+            const string sql = "UPDATE [USUARIOS] SET ESTADO_REGISTRO = 0 WHERE ID = @Id";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("ID", id, DbType.Int64);
+
+            var result = DBManager.Instance.SetData(sql, parameters);
+            return result;
+        }
+
     }
 }

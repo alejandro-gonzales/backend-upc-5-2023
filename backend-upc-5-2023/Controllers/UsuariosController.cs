@@ -48,7 +48,7 @@ namespace backend_upc_5_2023.Controllers
         {
             try
             {
-                var result = UsuariosServicios.Get<Usuarios>();
+                var result = UsuariosServicios.Get();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -89,6 +89,36 @@ namespace backend_upc_5_2023.Controllers
             try
             {
                 var result = UsuariosServicios.Insert(usuarios);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("UpdateUsuario")]
+        public IActionResult Update(Usuarios usuarios)
+        {
+            try
+            {
+                var result = UsuariosServicios.Update(usuarios);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("DeleteUsuario")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                var result = UsuariosServicios.Delete(id);
                 return Ok(result);
             }
             catch (Exception ex)

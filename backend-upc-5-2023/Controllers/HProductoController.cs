@@ -98,6 +98,37 @@ namespace backend_upc_5_2023.Controllers
             }
         }
 
+
+        [HttpPost]
+        [Route("UpdateHProducto")]
+        public IActionResult Update(HProducto hProducto)
+        {
+            try
+            {
+                var result = HProductoServicios.Update(hProducto);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("DeleteHProducto")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                var result = HProductoServicios.Delete(id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         #endregion Methods
     }
 }

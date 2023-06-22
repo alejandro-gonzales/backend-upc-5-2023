@@ -100,5 +100,32 @@ namespace backend_upc_5_2023.Servicios
 
             return result;
         }
+
+        public static int Update(HProducto hProducto)
+        {
+            const string sql = "UPDATE [H_PRODUCTO] SET CANTIDAD = @Cantidad, ID_PRODUCTO = @IdProducto, ID_CARRITO_COMPRA = @IdCarritoCompra WHERE ID = @Id";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("Id", hProducto.Id, DbType.Int64);
+            parameters.Add("Cantidad", hProducto.Cantidad, DbType.Int64);
+            parameters.Add("IdProducto", hProducto.IdProducto, DbType.Int64);
+            parameters.Add("IdCarritoCompra", hProducto.IdCarritoCompra, DbType.Int64);
+
+            var result = DBManager.Instance.SetData(sql, parameters);
+
+            return result;
+        }
+
+        public static int Delete(int id)
+        {
+            const string sql = "UPDATE [H_PRODUCTO] SET ESTADO_REGISTRO = 0 WHERE ID = @Id";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("ID", id, DbType.Int64);
+
+            var result = DBManager.Instance.SetData(sql, parameters);
+            return result;
+        }
+
     }
 }

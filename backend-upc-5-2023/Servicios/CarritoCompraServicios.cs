@@ -18,11 +18,25 @@ namespace backend_upc_5_2023.Servicios
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         /// <exception cref="System.Data.SqlClient.SqlException"></exception>
-        public static IEnumerable<T> Get<T>()
+        //public static IEnumerable<T> Get<T>()
+        //{
+        //    const string sql = "SELECT * FROM CARRITO_COMPRA WHERE ESTADO_REGISTRO = 1";
+
+        //    return DBManager.Instance.GetData<T>(sql);
+        //}
+
+
+        public static IEnumerable<CarritoCompra> Get()
         {
             const string sql = "SELECT * FROM CARRITO_COMPRA WHERE ESTADO_REGISTRO = 1";
+            var enummerableCarritoCompra = DBManager.Instance.GetData<CarritoCompra>(sql);
 
-            return DBManager.Instance.GetData<T>(sql);
+            foreach (var item in enummerableCarritoCompra)
+            {
+                item.Usuarios = UsuariosServicios.GetById<Usuarios>(item.IdUsuario);
+            }
+
+            return enummerableCarritoCompra;
         }
 
         /// <summary>
@@ -98,5 +112,32 @@ namespace backend_upc_5_2023.Servicios
 
             return result;
         }
+
+        public static int Update(CarritoCompra carritoCompra)
+        {
+            const string sql = "UPDATE [CARRITO_COMPRA] SET ID_USUARIO = @IdUsuario WHERE ID = @Id";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("Id", carritoCompra.Id, DbType.Int64);
+            parameters.Add("Fecha", DateTime.Now, DbType.DateTime);
+            parameters.Add("IdUsuario", carritoCompra.IdUsuario, DbType.Int64);
+
+            var result = DBManager.Instance.SetData(sql, parameters);
+
+            return result;
+        }
+
+        public static int Delete(int id)
+        {
+            const string sql = "UPDATE [CARRITO_COMPRA] SET ESTADO_REGISTRO = 0 WHERE ID = @Id";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("ID", id, DbType.Int64);
+
+            var result = DBManager.Instance.SetData(sql, parameters);
+            return result;
+        }
+
+
     }
 }
