@@ -45,23 +45,43 @@ namespace backend_upc_5_2023.Servicios
         /// <typeparam name="T"></typeparam>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        public static CarritoCompra GetById(int id)
+        //public static CarritoCompra GetById(int id)
+        //{
+        //    const string sql = "SELECT * FROM CARRITO_COMPRA WHERE ID = @Id AND ESTADO_REGISTRO = 1";
+
+        //    var parameters = new DynamicParameters();
+        //    parameters.Add("ID", id, DbType.Int64);
+
+        //    var result = DBManager.Instance.GetDataConParametros<CarritoCompra>(sql, parameters);
+
+        //    CarritoCompra carritoCompra = result.FirstOrDefault();
+
+        //    if (carritoCompra != null)
+        //    {
+        //        carritoCompra.Usuarios = UsuariosServicios.GetById<Usuarios>(carritoCompra.IdUsuario);
+        //    }
+
+        //    return result.FirstOrDefault();
+        //}
+
+
+        public static T GetById<T>(int id) where T : CarritoCompra
         {
-            const string sql = "SELECT * FROM CARRITO_COMPRA WHERE ID = @Id AND ESTADO_REGISTRO = 1";
+            const string sql = "SELECT * FROM CARRITO_COMPRA WHERE ID = @Id";
 
             var parameters = new DynamicParameters();
             parameters.Add("ID", id, DbType.Int64);
 
-            var result = DBManager.Instance.GetDataConParametros<CarritoCompra>(sql, parameters);
+            var result = DBManager.Instance.GetDataConParametros<T>(sql, parameters);
 
-            CarritoCompra carritoCompra = result.FirstOrDefault();
+            T carritoCompra = result.FirstOrDefault();
 
             if (carritoCompra != null)
             {
                 carritoCompra.Usuarios = UsuariosServicios.GetById<Usuarios>(carritoCompra.IdUsuario);
             }
 
-            return result.FirstOrDefault();
+            return carritoCompra;
         }
 
         /// <summary>

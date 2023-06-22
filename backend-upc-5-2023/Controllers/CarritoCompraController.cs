@@ -70,7 +70,7 @@ namespace backend_upc_5_2023.Controllers
         {
             try
             {
-                var result = CarritoCompraServicios.GetById(id);
+                var result = CarritoCompraServicios.GetById<CarritoCompra>(id);
                 return Ok(result);
             }
             catch (Exception ex)

@@ -34,6 +34,7 @@ namespace backend_upc_5_2023.Servicios
             foreach (var item in enummerableHProducto)
             {
                 item.Producto = ProductoServicios.GetById<Producto>(item.IdProducto);
+                item.CarritoCompra = CarritoCompraServicios.GetById<CarritoCompra>(item.IdCarritoCompra);
             }
 
             return enummerableHProducto;
@@ -59,7 +60,7 @@ namespace backend_upc_5_2023.Servicios
             if (hProducto != null)
             {
                 hProducto.Producto = ProductoServicios.GetById<Producto>(hProducto.IdProducto);
-                hProducto.CarritoCompra = CarritoCompraServicios.GetById(hProducto.IdCarritoCompra);
+                hProducto.CarritoCompra = CarritoCompraServicios.GetById<CarritoCompra>(hProducto.IdCarritoCompra);
             }
 
             return result.FirstOrDefault();
